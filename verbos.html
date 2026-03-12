@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayIngles - Tabla de Verbos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col text-slate-900 font-sans">
+
+    <header class="bg-white py-6 border-b border-slate-200 shadow-sm">
+        <h1 class="text-3xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 tracking-tight uppercase">
+            PlayIngles
+        </h1>
+    </header>
+
+    <nav class="bg-indigo-600 shadow-lg sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-center space-x-6 py-3">
+                <a href="/index.html" class="text-indigo-100 hover:text-white text-sm font-semibold transition-all border-b-2 border-transparent hover:border-white pb-1">Principal</a>
+                <a href="/verbos.html" class="text-indigo-100 hover:text-white text-sm font-semibold transition-all border-b-2 border-white pb-1">Verbos</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto w-full p-6 space-y-12">
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+            <div id="contenerButtonCategory" class="flex overflow-x-auto items-center gap-3 py-2 px-1 custom-scrollbar">
+                <button data-category="reg" class="category-btn flex-shrink-0 text-sm bg-indigo-600 text-white font-bold py-3 px-8 rounded-xl shadow-md">Regulares</button>
+                <button data-category="irreg" class="category-btn flex-shrink-0 text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 font-bold py-3 px-8 rounded-xl shadow-sm transition-all">Irregulares</button>
+                <button data-category="ambos" class="category-btn flex-shrink-0 text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 font-bold py-3 px-8 rounded-xl shadow-sm transition-all">Ambos</button>
+                <button data-category="conect" class="category-btn flex-shrink-0 text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 font-bold py-3 px-8 rounded-xl shadow-sm transition-all">Conectivos</button>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+            <div class="bg-gray-50/50 px-8 py-5 border-b border-gray-100 flex justify-between items-center">
+                <h2 class="text-xl font-black text-gray-700 uppercase tracking-widest">Listado de Verbos</h2>
+            </div>
+
+            <div id="table-verbo" class="overflow-x-auto">
+                <div class="max-h-[600px] overflow-y-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white sticky top-0 z-10 shadow-sm">
+                            <tr>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-start">Presente</th>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-center">3ª Persona</th>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-center">Pasado</th>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-center">Gerundio</th>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-center">Traducción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statsTableBody" class="divide-y divide-gray-50"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="table-conect" class="overflow-x-auto hidden">
+                <div class="max-h-[600px] overflow-y-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white sticky top-0 z-10 shadow-sm">
+                            <tr>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-start">Conectivo</th>
+                                <th class="px-6 py-4 text-lg font-bold text-indigo-600 uppercase text-center">Traducción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statsTableBodys" class="divide-y divide-gray-50"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-auto py-8 text-center text-gray-400 text-sm">
+        &copy; 2026 PlayIngles • Aprende Inglés con estilo
+    </footer>
+
+    <script type="module">
+        import { initVerbTable } from '/src/pages/verbTable.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = {
+                statsTableBody: document.getElementById('statsTableBody'),
+                statsTableBodys: document.getElementById('statsTableBodys'),
+                categoryButtons: document.querySelectorAll('.category-btn'),
+            };
+            
+            initVerbTable(elements);
+        });
+    </script>
+</body>
+
+</html>

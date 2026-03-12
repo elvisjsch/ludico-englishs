@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayIngles - Aprende Inglés</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col text-slate-900 font-sans">
+
+    <header class="bg-white py-6 border-b border-slate-200 shadow-sm">
+        <h1 class="text-3xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 tracking-tight uppercase">
+            PlayIngles
+        </h1>
+    </header>
+
+    <nav class="bg-indigo-600 shadow-lg sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-center space-x-6 py-3">
+                <a href="/index.html" class="text-indigo-100 hover:text-white text-sm font-semibold transition-all border-b-2 border-white pb-1">Principal</a>
+                <a href="/verbos.html" class="text-indigo-100 hover:text-white text-sm font-semibold transition-all border-b-2 border-transparent hover:border-white pb-1">Verbos</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-5xl">
+
+            <div id="contener-play" class="lg:col-span-7 bg-white rounded-[2rem] shadow-xl shadow-slate-200/60 p-6 border border-slate-100 flex flex-col items-center relative overflow-hidden">
+                
+                <div class="flex items-center gap-3 mb-6 bg-slate-50 p-1.5 rounded-xl border border-slate-100">
+                    <label class="flex items-center cursor-pointer group">
+                        <input type="radio" name="opcion" class="sr-only peer" value="es" checked>
+                        <div class="px-4 py-1.5 rounded-lg peer-checked:bg-indigo-600 peer-checked:text-white text-slate-500 text-sm font-bold transition-all">
+                            Español
+                        </div>
+                    </label>
+                    <label class="flex items-center cursor-pointer group">
+                        <input type="radio" name="opcion" class="sr-only peer" value="en">
+                        <div class="px-4 py-1.5 rounded-lg peer-checked:bg-indigo-600 peer-checked:text-white text-slate-500 text-sm font-bold transition-all">
+                            Inglés
+                        </div>
+                    </label>
+                </div>
+
+                <div class="bg-indigo-50 w-16 h-16 flex items-center justify-center rounded-2xl mb-4 shadow-inner">
+                    <span class="text-3xl">🎮</span>
+                </div>
+
+                <h2 class="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Flashcards</h2>
+                
+                <div class="min-h-[100px] flex items-center justify-center w-full px-4">
+                    <p id="areaText" class="text-2xl md:text-3xl font-extrabold text-slate-800 text-center leading-tight">
+                        ¿Empezamos?
+                    </p>
+                </div>
+
+                <div id="areaEnser" class="hidden w-full max-w-xs mt-4 p-4 bg-gradient-to-br from-indigo-50 to-slate-50 rounded-2xl border border-indigo-100 text-center transform transition-all">
+                    <p id="translation" class="text-2xl font-black text-indigo-600 mb-1"></p>
+                    <p id="pronunciation" class="text-sm text-slate-400 italic font-medium tracking-wide"></p>
+                </div>
+
+                <div id="contenerButtonPlay" class="w-full max-w-xs mt-6 space-y-3">
+                    <button id="btnBegin" class="w-full bg-slate-900 hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all active:scale-[0.97] flex items-center justify-center gap-3 group text-sm">
+                        <span>¡JUGAR AHORA!</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </button>
+
+                    <button id="btnShow" class="hidden w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-6 rounded-xl shadow-md transition-all active:scale-[0.97] text-sm">
+                        Mostrar Respuesta
+                    </button>
+
+                    <button id="btnNext" class="hidden w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-6 rounded-xl shadow-md transition-all active:scale-[0.97] text-sm">
+                        Siguiente Palabra
+                    </button>
+
+                    <div id="evaluationButtons" class="hidden flex gap-3 w-full animate-in fade-in zoom-in duration-300">
+                        <button id="wrongBtn" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-4 rounded-xl flex-1 shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                            <span class="text-lg">✕</span> <span class="text-xs uppercase">Mal</span>
+                        </button>
+                        <button id="correctBtn" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl flex-1 shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                            <span class="text-lg">✓</span> <span class="text-xs uppercase">Bien</span>
+                        </button>
+                    </div>
+
+                    <button id="btnReset" class="hidden w-full bg-amber-500 hover:bg-amber-400 text-white font-bold py-4 px-6 rounded-xl shadow-md transition-all active:scale-[0.97] text-sm">
+                        Reiniciar el Juego
+                    </button>
+                </div>
+
+                <div class="w-full mt-8 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div id="containerCheckMode" class="flex items-center gap-3">
+                        <span class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Modo Evaluación</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="checkMode" type="checkbox" class="sr-only peer" checked>
+                            <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="contenerButtonCategory" class="flex overflow-x-auto custom-scrollbar items-center py-3 px-2 gap-2 w-full mt-2">
+                    <button data-category="reg" class="category-btn flex-shrink-0 text-xs bg-indigo-600 text-white font-bold py-2.5 px-4 rounded-lg shadow-sm transition-all whitespace-nowrap">Regulares</button>
+                    <button data-category="irreg" class="category-btn flex-shrink-0 text-xs bg-gray-200 text-gray-600 hover:bg-gray-300 font-bold py-2.5 px-4 rounded-lg transition-all whitespace-nowrap">Irregulares</button>
+                    <button data-category="ambos" class="category-btn flex-shrink-0 text-xs bg-gray-200 text-gray-600 hover:bg-gray-300 font-bold py-2.5 px-4 rounded-lg transition-all whitespace-nowrap">Ambos</button>
+                    <button data-category="conect" class="category-btn flex-shrink-0 text-xs bg-gray-200 text-gray-600 hover:bg-gray-300 font-bold py-2.5 px-4 rounded-lg transition-all whitespace-nowrap">Conectivos</button>
+                </div>
+            </div>
+
+            <div id="table-contener" class="lg:col-span-5 bg-white rounded-[2rem] shadow-lg shadow-slate-200/50 p-6 border border-slate-100 flex flex-col">
+                <div class="flex flex-col items-center justify-between mb-6">
+                    <div id="allResult" class="flex items-center gap-2">
+                        <div class="p-1.5 bg-gray-100 rounded-lg text-lg">🧾</div>
+                        <h2 class="text-lg font-black text-slate-800 uppercase tracking-tight">Progreso</h2>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="px-2.5 py-1 bg-emerald-50 rounded-lg border border-emerald-100">
+                            <span id="contCorrect" class="text-emerald-600 font-bold text-xs cursor-pointer hover:text-emerald-700">✓ Correctas: 0</span>
+                        </div>
+                        <div class="px-2.5 py-1 bg-rose-50 rounded-lg border border-rose-100">
+                            <span id="contIncorrect" class="text-rose-600 font-bold text-xs cursor-pointer hover:text-rose-700">✕ Incorrectas: 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-slate-100 flex-grow flex flex-col bg-slate-50/50">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white border-b border-slate-100">
+                            <tr>
+                                <th class="px-5 py-3 text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Palabra</th>
+                                <th class="px-5 py-3 text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">Estado</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="overflow-y-auto max-h-[380px] custom-scrollbar">
+                        <table class="w-full text-left border-collapse">
+                            <tbody id="statsTableBody" class="divide-y divide-slate-100">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center">
+        <p class="text-slate-400 text-xs font-medium">
+            &copy; 2026 PlayIngles • Aprende Inglés con estilo
+        </p>
+    </footer>
+
+    <script type="module" src="/src/pages/flashcards.js"></script>
+    <script type="module">
+        import { initFlashcards } from '/src/pages/flashcards.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = {
+                btnBegin: document.getElementById('btnBegin'),
+                btnShow: document.getElementById('btnShow'),
+                btnNext: document.getElementById('btnNext'),
+                btnReset: document.getElementById('btnReset'),
+                areaText: document.getElementById('areaText'),
+                areaEnser: document.getElementById('areaEnser'),
+                evaluationButtons: document.getElementById('evaluationButtons'),
+                translation: document.getElementById('translation'),
+                pronunciation: document.getElementById('pronunciation'),
+                statsTableBody: document.getElementById('statsTableBody'),
+                contCorrect: document.getElementById('contCorrect'),
+                contIncorrect: document.getElementById('contIncorrect'),
+                correctBtn: document.getElementById('correctBtn'),
+                allResult: document.getElementById('allResult'),
+                wrongBtn: document.getElementById('wrongBtn'),
+                checkMode: document.getElementById('checkMode'),
+                contenerCategory: document.getElementById('contenerButtonCategory'),
+                categoryButtons: document.querySelectorAll('.category-btn'),
+            };
+            
+            initFlashcards(elements);
+        });
+    </script>
+</body>
+
+</html>
